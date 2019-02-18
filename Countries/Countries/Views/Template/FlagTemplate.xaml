@@ -13,7 +13,12 @@
             <ffimageloadingsvg:SvgImageSourceConverter 
                 x:Key="SvgImageSourceConverter"/>
 
-            <Style x:Key="WatchingItemStyle" TargetType="Grid">
+            <Style x:Key="MovieItemCoverStyle" TargetType="ffimageloading:CachedImage">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HeightRequest" Value="160" />
+            </Style>
+
+            <!--<Style x:Key="WatchingItemStyle" TargetType="Grid">
                 <Setter Property="WidthRequest" Value="350" />
             </Style>
 
@@ -46,30 +51,33 @@
                 <Setter Property="VerticalOptions" Value="End" />
                 <Setter Property="HeightRequest" Value="2" />
                 <Setter Property="WidthRequest" Value="80" />
-            </Style>
+            </Style>-->
 
         </ResourceDictionary>
     </ContentView.Resources>
     
   <ContentView.Content>
-        <Grid Style="{StaticResource WatchingItemStyle}">
+        <ffimageloading:CachedImage 
+       
+                Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}"
+                  Style="{StaticResource MovieItemCoverStyle}">
+        </ffimageloading:CachedImage>
+        <!--<Grid Style="{StaticResource WatchingItemStyle}">
 
             <ffimageloading:CachedImage 
-                WidthRequest="200" 
-                HeightRequest="200" 
-                Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}">
+       
+                Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}"
+                  Style="{StaticResource CoverStyle}">
             </ffimageloading:CachedImage>
 
 
-            <Image 
-                Source="{Binding Flag}"
-                Style="{StaticResource CoverStyle}"/>
+    
             
             <Label 
                 Text="{Binding Name}"
                 Style="{StaticResource TitleStyle}"/>
             <Grid 
                 Style="{StaticResource ProgressStyle}"/>
-        </Grid>
+        </Grid>-->
   </ContentView.Content>
 </ContentView>
