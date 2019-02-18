@@ -17,7 +17,7 @@ namespace Countries.ViewModels
         #endregion
 
         #region ViewModels
-        public CountryViewModel Countries
+        public CountryViewModel Country
         {
             get;
             set;
@@ -29,7 +29,7 @@ namespace Countries.ViewModels
         public MainViewModel()
         {
             instance = this;
-            this.Countries = new CountryViewModel();
+            this.Country = new CountryViewModel();
         }
         #endregion
 

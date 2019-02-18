@@ -5,7 +5,7 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Countries">
     <ContentPage.Content>
-        <StackLayout BindingContext="{Binding Countries}">
+        <StackLayout BindingContext="{Binding Country}">
             <Label Text="{Binding Name}"></Label>
             <ListView ItemsSource="{Binding Countries}">
                 <ListView.ItemTemplate>
