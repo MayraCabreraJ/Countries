@@ -20,6 +20,8 @@ namespace Countries.ViewModels
         #region Attributes
         private string name;
         private ObservableCollection<Country> countries;
+        private ObservableCollection<Country> countriesRegion;
+
         #endregion
 
 
@@ -36,6 +38,13 @@ namespace Countries.ViewModels
             get { return this.countries; }
             set { SetValue(ref this.countries, value); }
         }
+
+        public ObservableCollection<Country> CountriesRegion
+        {
+            get { return this.countriesRegion; }
+            set { SetValue(ref this.countriesRegion, value); }
+        }
+
         public List<Country> MyCountries { get; set; }
         #endregion
 
@@ -46,6 +55,7 @@ namespace Countries.ViewModels
             this.Name = "Antonio Tamez Salinas";
             this.apiService = new ApiService();
             this.LoadCountries();
+            this.LoadCountries("Americas");
         }
 
 
@@ -71,8 +81,32 @@ namespace Countries.ViewModels
                 return;
             }
             var list = (List<Country>)response.Result;
-            this.Countries = new ObservableCollection<Country>(list);
+            this.Countries = new ObservableCollection<Country>(list.Take(10));
         }
+   
+        private async void LoadCountries(string region)
+        {
+            var controller = $"/v2/region/{region}";
+
+            var response = await this.apiService.GetList<Country>(
+         "http://restcountries.eu",
+         "/rest",
+         controller);
+
+            if (!response.IsSuccess)
+            {
+                //this.IsRefreshing = false;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    response.Message,
+                    "Accept");
+                await Application.Current.MainPage.Navigation.PopAsync();
+                return;
+            }
+            var list = (List<Country>)response.Result;
+            this.CountriesRegion = new ObservableCollection<Country>(list);
+        }
+
 
         private IEnumerable<CountryItemViewModel> ToCountryItemViewModel()
         {

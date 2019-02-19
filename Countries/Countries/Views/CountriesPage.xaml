@@ -35,7 +35,7 @@
                 <Label Text="{Binding Name}"></Label>
 
                 <Label 
-                    Text="Movies" 
+                    Text="Countries" 
                     Style="{StaticResource TitleStyle}">
                     <Label.Margin>
                         <OnPlatform x:TypeArguments="Thickness">
@@ -54,40 +54,26 @@
                             <templates:FlagTemplate/>
                         </DataTemplate>
                     </controls:HorizontalList.ItemTemplate>
-              
                 </controls:HorizontalList>
-            
-                <!--<ListView ItemsSource="{Binding Countries}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <StackLayout Grid.Column="0" VerticalOptions="Center">
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="Medium"
-                                            Text="{Binding Name}"/>
-                                        
-                                        
-                                 
-                                    </StackLayout>
 
-                                <ffimageloading:CachedImage  Grid.Column="1"
-                                    WidthRequest="200" 
-                                    HeightRequest="200" 
-                                    Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}">
-                                </ffimageloading:CachedImage>
-                            </Grid>
-                            
-                            </ViewCell>
+
+                <Label
+                    Text="Americas" 
+                    Style="{StaticResource TitleStyle}">
+                    
+                </Label>
+                <controls:HorizontalList
+                    ListOrientation="Horizontal"
+                    ItemsSource="{Binding CountriesRegion}"
+                    HeightRequest="70">
+                    <controls:HorizontalList.ItemTemplate>
+                        <DataTemplate>
+                            <templates:FlagTemplate/>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>-->
- 
+                    </controls:HorizontalList.ItemTemplate>
+                </controls:HorizontalList>
+
+
             </StackLayout>
         </ScrollView>
         
