@@ -70,6 +70,9 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="Resources\tadah.json" />
+    <BundleResource Include="Resources\preloader.json" />
+    <BundleResource Include="Resources\heart.json" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -123,6 +126,9 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie">
+      <Version>2.5.4</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Svg">
       <Version>2.4.4.859</Version>
     </PackageReference>

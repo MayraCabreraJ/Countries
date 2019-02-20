@@ -8,7 +8,9 @@ namespace Countries.ViewModels
     using Xamarin.Forms;
     using System.Collections.Generic;
     using System.Linq;
-
+    using System.Windows.Input;
+    using GalaSoft.MvvmLight.Command;
+    using System;
 
     public class CountryViewModel : BaseViewModel
     {
@@ -21,11 +23,15 @@ namespace Countries.ViewModels
         private string name;
         private ObservableCollection<Country> countries;
         private ObservableCollection<Country> countriesRegion;
-
+        private ICommand playingCommand;
+       
         #endregion
 
 
         #region Properties
+
+    
+      
 
         public string Name
         {
@@ -142,7 +148,19 @@ namespace Countries.ViewModels
 
 
         #region Commands
+        public ICommand PlayingCommand
+        {
+            get
+            {
+                return new RelayCommand(Playing);
+            }
+            
+        }
 
+        private void Playing()
+        {
+             
+        }
         #endregion
     }
 }

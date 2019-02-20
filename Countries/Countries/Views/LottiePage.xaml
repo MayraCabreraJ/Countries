@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    x:Class="Countries.Views.LottiePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <lottie:AnimationView
+                 x:Name="LottieView" 
+                 Animation="heart.json" 
+                 Loop="False" 
+                 AutoPlay="False"
+                 PlaybackStartedCommand="{Binding PlayingCommand}"
+                 PlaybackFinishedCommand="{Binding FinishedCommand}"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand" >
+
+              
+                
+                <lottie:AnimationView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PlayingCommand}">
+                        
+                    </TapGestureRecognizer>
+                </lottie:AnimationView.GestureRecognizers>
+                
+                
+            </lottie:AnimationView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

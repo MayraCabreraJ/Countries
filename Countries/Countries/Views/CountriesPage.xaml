@@ -6,7 +6,8 @@
     xmlns:controls ="clr-namespace:Countries.Controls.HorizontalList"
     xmlns:templates ="clr-namespace:Countries.Views.Template"
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
-     BackgroundColor="{StaticResource BackgroundColor}"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
     Title="Countries">
 
     <ContentPage.Resources>
@@ -33,6 +34,26 @@
         <ScrollView>
             <StackLayout BindingContext="{Binding Country}">
                 <Label Text="{Binding Name}"></Label>
+  <!--OnClick="LottieView_OnClick"-->
+                <lottie:AnimationView
+                    x:Name="LottieView" 
+                    Animation="heart.json" 
+                    Loop="False" 
+                    AutoPlay="False"
+                    Speed="1.5"
+                    IsPlaying="True"
+                    PlaybackStartedCommand="{Binding PlayingCommand}"
+                    PlaybackFinishedCommand="{Binding FinishedCommand}"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    ClickedCommand="{Binding PlayingCommand}">
+                    <lottie:AnimationView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PlayingCommand}">
+
+                        </TapGestureRecognizer>
+                    </lottie:AnimationView.GestureRecognizers>
+
+                </lottie:AnimationView>
 
                 <Label 
                     Text="Countries" 

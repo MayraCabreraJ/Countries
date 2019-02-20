@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using FFImageLoading.Forms.Platform;
+﻿using FFImageLoading.Forms.Platform;
 using Foundation;
+using Lottie.Forms.iOS.Renderers;
 using UIKit;
 
 namespace Countries.iOS
@@ -25,7 +23,7 @@ namespace Countries.iOS
             global::Xamarin.Forms.Forms.Init();
 
             CachedImageRenderer.Init();
-
+            AnimationViewRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

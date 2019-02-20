@@ -10,18 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace Countries.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CountriesPage : ContentPage
+    public partial class LottiePage : ContentPage
     {
-        public CountriesPage()
+        public LottiePage()
         {
             InitializeComponent();
-
-            LottieView.OnClick += LottieView_OnClick;
-        }
-
-        private void LottieView_OnClick(object sender, EventArgs e)
-        {
-            LottieView.Play();   
         }
     }
 }

@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie">
+      <Version>2.5.4</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Svg">
       <Version>2.4.4.859</Version>
     </PackageReference>
@@ -71,6 +74,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\heart.json" />
+    <AndroidAsset Include="Assets\tadah.json" />
+    <AndroidAsset Include="Assets\preloader.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
