@@ -12,8 +12,12 @@ namespace Countries.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CountriesPage : ContentPage
     {
+
+        
         public CountriesPage()
         {
+          
+
             InitializeComponent();
 
             LottieView.OnClick += LottieView_OnClick;
@@ -21,7 +25,8 @@ namespace Countries.Views
 
         private void LottieView_OnClick(object sender, EventArgs e)
         {
-            LottieView.Play();   
+            //LottieView.Play();
+           // LottieView.Progress = 25f;
         }
     }
 }

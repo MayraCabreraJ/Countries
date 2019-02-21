@@ -11,6 +11,8 @@ namespace Countries.ViewModels
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
     using System;
+   
+    using Region = Models.Region;
 
     public class CountryViewModel : BaseViewModel
     {
@@ -22,7 +24,13 @@ namespace Countries.ViewModels
         #region Attributes
         private string name;
         private ObservableCollection<Country> countries;
-        private ObservableCollection<Country> countriesRegion;
+        
+
+        private ObservableCollection<Country> africa;
+        private ObservableCollection<Country> americas;
+        private ObservableCollection<Country> asia;
+        private ObservableCollection<Country> europe;
+        private ObservableCollection<Country> oceania;
         private ICommand playingCommand;
        
         #endregion
@@ -45,12 +53,32 @@ namespace Countries.ViewModels
             set { SetValue(ref this.countries, value); }
         }
 
-        public ObservableCollection<Country> CountriesRegion
+        public ObservableCollection<Country> Africa
         {
-            get { return this.countriesRegion; }
-            set { SetValue(ref this.countriesRegion, value); }
+            get { return this.africa; }
+            set { SetValue(ref this.africa, value); }
         }
 
+        public ObservableCollection<Country> Americas
+        {
+            get { return this.americas; }
+            set { SetValue(ref this.americas, value); }
+        }
+        public ObservableCollection<Country> Asia
+        {
+            get { return this.asia; }
+            set { SetValue(ref this.asia, value); }
+        }
+        public ObservableCollection<Country> Europe
+        {
+            get { return this.europe; }
+            set { SetValue(ref this.europe, value); }
+        }
+        public ObservableCollection<Country> Oceania
+        {
+            get { return this.oceania; }
+            set { SetValue(ref this.oceania, value); }
+        }
         public List<Country> MyCountries { get; set; }
         #endregion
 
@@ -61,7 +89,11 @@ namespace Countries.ViewModels
             this.Name = "Antonio Tamez Salinas";
             this.apiService = new ApiService();
             this.LoadCountries();
-            this.LoadCountries("Americas");
+            this.LoadCountries(Region.Africa);
+            this.LoadCountries(Region.Americas);
+            this.LoadCountries(Region.Asia);
+            this.LoadCountries(Region.Europe);
+            this.LoadCountries(Region.Oceania);
         }
 
 
@@ -90,7 +122,7 @@ namespace Countries.ViewModels
             this.Countries = new ObservableCollection<Country>(list.Take(10));
         }
    
-        private async void LoadCountries(string region)
+        private async void LoadCountries(Models.Region region)
         {
             var controller = $"/v2/region/{region}";
 
@@ -110,7 +142,27 @@ namespace Countries.ViewModels
                 return;
             }
             var list = (List<Country>)response.Result;
-            this.CountriesRegion = new ObservableCollection<Country>(list);
+
+            switch (region)
+            {
+                case Region.Africa:
+                    this.Africa = new ObservableCollection<Country>(list);
+                    break;
+                case Region.Americas:
+                    this.Americas = new ObservableCollection<Country>(list);
+                    break;
+                case Region.Asia:
+                    this.Asia = new ObservableCollection<Country>(list);
+                    break;
+                case Region.Europe:
+                    this.Europe = new ObservableCollection<Country>(list);
+                    break;
+                case Region.Oceania:
+                    this.Oceania = new ObservableCollection<Country>(list);
+                    break;
+            }
+
+            
         }
 
 

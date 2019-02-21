@@ -17,13 +17,9 @@
                  VerticalOptions="FillAndExpand"
                  HorizontalOptions="FillAndExpand" >
 
-              
-                
-                <lottie:AnimationView.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding PlayingCommand}">
-                        
-                    </TapGestureRecognizer>
-                </lottie:AnimationView.GestureRecognizers>
+
+
+   
                 
                 
             </lottie:AnimationView>

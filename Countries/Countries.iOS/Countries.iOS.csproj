@@ -73,6 +73,7 @@
     <BundleResource Include="Resources\tadah.json" />
     <BundleResource Include="Resources\preloader.json" />
     <BundleResource Include="Resources\heart.json" />
+    <BundleResource Include="Resources\heart2.json" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

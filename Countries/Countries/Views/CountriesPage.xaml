@@ -33,66 +33,147 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout BindingContext="{Binding Country}">
-                <Label Text="{Binding Name}"></Label>
+                
   <!--OnClick="LottieView_OnClick"-->
-                <lottie:AnimationView
-                    x:Name="LottieView" 
-                    Animation="heart.json" 
-                    Loop="False" 
-                    AutoPlay="False"
-                    Speed="1.5"
-                    IsPlaying="True"
-                    PlaybackStartedCommand="{Binding PlayingCommand}"
-                    PlaybackFinishedCommand="{Binding FinishedCommand}"
-                    VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand"
-                    ClickedCommand="{Binding PlayingCommand}">
-                    <lottie:AnimationView.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding PlayingCommand}">
 
-                        </TapGestureRecognizer>
-                    </lottie:AnimationView.GestureRecognizers>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                </lottie:AnimationView>
+                    <Label Grid.Row="0" Text="{Binding Name}"></Label>
 
-                <Label 
-                    Text="Countries" 
-                    Style="{StaticResource TitleStyle}">
-                    <Label.Margin>
-                        <OnPlatform x:TypeArguments="Thickness">
-                            <On Platform="Android" Value="12, 0" />
-                            <On Platform="iOS"  Value="12, 12, 12, 0" />
-                        </OnPlatform>
-                    </Label.Margin>
-                </Label>
+                    <lottie:AnimationView
+                        Grid.Row="1"
+                        x:Name="LottieView" 
+                        Animation="heart.json" 
+                        Loop="False" 
+                        AutoPlay="False"
+                        Speed="1.5"
+                        IsVisible="False">
+                     
 
-                <controls:HorizontalList
-                    ListOrientation="Horizontal"
-                    ItemsSource="{Binding Countries}"
-                    HeightRequest="70">
-                    <controls:HorizontalList.ItemTemplate>
-                        <DataTemplate>
-                            <templates:FlagTemplate/>
-                        </DataTemplate>
-                    </controls:HorizontalList.ItemTemplate>
-                </controls:HorizontalList>
+                    </lottie:AnimationView>
+
+                    <StackLayout Grid.Row="2">
+                        <Label 
+                            Text="Countries" 
+                            Style="{StaticResource TitleStyle}">
+                            <Label.Margin>
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <On Platform="Android" Value="12, 0" />
+                                    <On Platform="iOS"  Value="12, 12, 12, 0" />
+                                </OnPlatform>
+                            </Label.Margin>
+                        </Label>
+
+                        <controls:HorizontalList
+                            ListOrientation="Horizontal"
+                            ItemsSource="{Binding Countries}"
+                            HeightRequest="70">
+                            <controls:HorizontalList.ItemTemplate>
+                                <DataTemplate>
+                                    <templates:FlagTemplate/>
+                                </DataTemplate>
+                            </controls:HorizontalList.ItemTemplate>
+                        </controls:HorizontalList>
+
+                        <!--Africa-->
+                        <Label
+                            Text="Africa" 
+                            Style="{StaticResource TitleStyle}">
+
+                        </Label>
+                        <controls:HorizontalList
+                            ListOrientation="Horizontal"
+                            ItemsSource="{Binding Africa}"
+                            HeightRequest="70">
+                            <controls:HorizontalList.ItemTemplate>
+                                <DataTemplate>
+                                    <templates:FlagTemplate/>
+                                </DataTemplate>
+                            </controls:HorizontalList.ItemTemplate>
+                        </controls:HorizontalList>
+
+                        <!--Americas-->
+                        <Label
+                            Text="Americas" 
+                            Style="{StaticResource TitleStyle}">
+
+                        </Label>
+                        <controls:HorizontalList
+                            ListOrientation="Horizontal"
+                            ItemsSource="{Binding Americas}"
+                            HeightRequest="70">
+                            <controls:HorizontalList.ItemTemplate>
+                                <DataTemplate>
+                                    <templates:FlagTemplate/>
+                                </DataTemplate>
+                            </controls:HorizontalList.ItemTemplate>
+                        </controls:HorizontalList>
+
+                        <!--Asia-->
+                        <Label
+                            Text="Asia" 
+                            Style="{StaticResource TitleStyle}">
+
+                        </Label>
+                        <controls:HorizontalList
+                            ListOrientation="Horizontal"
+                            ItemsSource="{Binding Asia}"
+                            HeightRequest="70">
+                            <controls:HorizontalList.ItemTemplate>
+                                <DataTemplate>
+                                    <templates:FlagTemplate/>
+                                </DataTemplate>
+                            </controls:HorizontalList.ItemTemplate>
+                        </controls:HorizontalList>
+                        
+                        <!--Europe-->
+                        <Label
+                            Text="Europe" 
+                            Style="{StaticResource TitleStyle}">
+
+                        </Label>
+                        <controls:HorizontalList
+                            ListOrientation="Horizontal"
+                            ItemsSource="{Binding Europe}"
+                            HeightRequest="70">
+                            <controls:HorizontalList.ItemTemplate>
+                                <DataTemplate>
+                                    <templates:FlagTemplate/>
+                                </DataTemplate>
+                            </controls:HorizontalList.ItemTemplate>
+                        </controls:HorizontalList>
+                        
+                        <!--Oceania-->
+                        <Label
+                            Text="Oceania" 
+                            Style="{StaticResource TitleStyle}">
+
+                        </Label>
+                        <controls:HorizontalList
+                            ListOrientation="Horizontal"
+                            ItemsSource="{Binding Oceania}"
+                            HeightRequest="70">
+                            <controls:HorizontalList.ItemTemplate>
+                                <DataTemplate>
+                                    <templates:FlagTemplate/>
+                                </DataTemplate>
+                            </controls:HorizontalList.ItemTemplate>
+                        </controls:HorizontalList>
 
 
-                <Label
-                    Text="Americas" 
-                    Style="{StaticResource TitleStyle}">
-                    
-                </Label>
-                <controls:HorizontalList
-                    ListOrientation="Horizontal"
-                    ItemsSource="{Binding CountriesRegion}"
-                    HeightRequest="70">
-                    <controls:HorizontalList.ItemTemplate>
-                        <DataTemplate>
-                            <templates:FlagTemplate/>
-                        </DataTemplate>
-                    </controls:HorizontalList.ItemTemplate>
-                </controls:HorizontalList>
+
+                    </StackLayout>
+
+                </Grid>
+                
+                
+
+
 
 
             </StackLayout>

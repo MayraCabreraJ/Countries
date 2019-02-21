@@ -5,6 +5,8 @@ namespace Countries.Models
     using System.Collections.Generic;
     using Newtonsoft.Json;
 
+    public enum Region { Africa, Americas, Asia, Europe, Oceania  }
+
     public class Country
     {
         [JsonProperty(PropertyName = "name")]
