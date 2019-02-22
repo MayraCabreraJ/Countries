@@ -8,11 +8,21 @@
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
     BackgroundColor="{StaticResource BackgroundColor}"
     xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+
     Title="Countries">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-             
+
+            <ffimageloadingsvg:SvgImageSourceConverter x:Key="SvgImageSourceConverter"/>
+
+            <Style x:Key="MovieItemCoverStyle" TargetType="ffimageloading:CachedImage">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HeightRequest" Value="80" />
+            </Style>
+
             <Style x:Key="TitleStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
                 <Setter Property="FontSize" Value="14" />
@@ -31,10 +41,10 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView Padding="5">
             <StackLayout BindingContext="{Binding Country}">
                 
-  <!--OnClick="LottieView_OnClick"-->
+ 
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -43,10 +53,10 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Text="{Binding Name}"></Label>
+                    <Label Grid.Row="0" 
+                           Text="{Binding Name}"></Label>
 
-                    <lottie:AnimationView
-                        Grid.Row="1"
+                    <lottie:AnimationView Grid.Row="1"
                         x:Name="LottieView" 
                         Animation="heart.json" 
                         Loop="False" 
@@ -58,51 +68,84 @@
                     </lottie:AnimationView>
 
                     <StackLayout Grid.Row="2">
-                        <Label 
-                            Text="Countries" 
-                            Style="{StaticResource TitleStyle}">
-                            <Label.Margin>
-                                <OnPlatform x:TypeArguments="Thickness">
-                                    <On Platform="Android" Value="12, 0" />
-                                    <On Platform="iOS"  Value="12, 12, 12, 0" />
-                                </OnPlatform>
-                            </Label.Margin>
-                        </Label>
 
-                        <controls:HorizontalList
-                            ListOrientation="Horizontal"
-                            ItemsSource="{Binding Countries}"
-                            HeightRequest="70">
-                            <controls:HorizontalList.ItemTemplate>
+
+                        <ListView
+                            ItemsSource="{Binding Americas}"
+                            SeparatorVisibility="None"
+                            HasUnevenRows="True">
+                            <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <templates:FlagTemplate/>
+                                    <ViewCell>
+                                        <Frame 
+                                            CornerRadius="20"
+                                            HasShadow="True"
+                                            Margin="5">
+                                            <Grid>
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding DetailCommand}">
+                                                    </TapGestureRecognizer>
+                                                </Grid.GestureRecognizers>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <ffimageloading:CachedImage Grid.Column="0" 
+                                                    Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}"
+                                                    Style="{StaticResource MovieItemCoverStyle}">
+                                                </ffimageloading:CachedImage>
+
+                                                <Grid Grid.Column="1">
+                                                    <StackLayout HorizontalOptions="CenterAndExpand">
+                                                        <Label Text="{Binding Name}"></Label>
+                                                        <Label Text="{Binding Capital}"></Label>
+                                                        <Label Text="{Binding Alpha3Code}"></Label>
+                                                    </StackLayout>
+                                                </Grid>
+
+                                            </Grid>
+                                        </Frame>
+                                    </ViewCell>
                                 </DataTemplate>
-                            </controls:HorizontalList.ItemTemplate>
-                        </controls:HorizontalList>
-
-                        <!--Africa-->
-                        <Label
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        
+ 
+                        <!--Africa--><!--
+                        <Label 
                             Text="Africa" 
-                            Style="{StaticResource TitleStyle}">
+                            Style="{StaticResource TitleStyle}"/>
 
-                        </Label>
                         <controls:HorizontalList
                             ListOrientation="Horizontal"
                             ItemsSource="{Binding Africa}"
+                            SelectedCommand="{Binding DetailCommand}"
                             HeightRequest="70">
+
+                            <controls:HorizontalList.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding DetailCommand}">
+                                </TapGestureRecognizer>
+                            </controls:HorizontalList.GestureRecognizers>
+                            
                             <controls:HorizontalList.ItemTemplate>
                                 <DataTemplate>
                                     <templates:FlagTemplate/>
                                 </DataTemplate>
                             </controls:HorizontalList.ItemTemplate>
+                            
+                            
                         </controls:HorizontalList>
 
-                        <!--Americas-->
+                        --><!--Americas--><!--
                         <Label
-                            Text="Americas" 
+                            Text="America" 
                             Style="{StaticResource TitleStyle}">
 
                         </Label>
+                        
                         <controls:HorizontalList
                             ListOrientation="Horizontal"
                             ItemsSource="{Binding Americas}"
@@ -114,12 +157,13 @@
                             </controls:HorizontalList.ItemTemplate>
                         </controls:HorizontalList>
 
-                        <!--Asia-->
+                        --><!--Asia--><!--
                         <Label
                             Text="Asia" 
                             Style="{StaticResource TitleStyle}">
 
                         </Label>
+                        
                         <controls:HorizontalList
                             ListOrientation="Horizontal"
                             ItemsSource="{Binding Asia}"
@@ -131,12 +175,13 @@
                             </controls:HorizontalList.ItemTemplate>
                         </controls:HorizontalList>
                         
-                        <!--Europe-->
+                        --><!--Europe--><!--
                         <Label
                             Text="Europe" 
                             Style="{StaticResource TitleStyle}">
 
                         </Label>
+                        
                         <controls:HorizontalList
                             ListOrientation="Horizontal"
                             ItemsSource="{Binding Europe}"
@@ -148,12 +193,13 @@
                             </controls:HorizontalList.ItemTemplate>
                         </controls:HorizontalList>
                         
-                        <!--Oceania-->
+                        --><!--Oceania--><!--
                         <Label
                             Text="Oceania" 
                             Style="{StaticResource TitleStyle}">
 
                         </Label>
+                        
                         <controls:HorizontalList
                             ListOrientation="Horizontal"
                             ItemsSource="{Binding Oceania}"
@@ -163,7 +209,7 @@
                                     <templates:FlagTemplate/>
                                 </DataTemplate>
                             </controls:HorizontalList.ItemTemplate>
-                        </controls:HorizontalList>
+                        </controls:HorizontalList>-->
 
 
 

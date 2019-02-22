@@ -26,11 +26,11 @@ namespace Countries.ViewModels
         private ObservableCollection<Country> countries;
         
 
-        private ObservableCollection<Country> africa;
-        private ObservableCollection<Country> americas;
-        private ObservableCollection<Country> asia;
-        private ObservableCollection<Country> europe;
-        private ObservableCollection<Country> oceania;
+        private ObservableCollection<CountryItemViewModel> africa;
+        private ObservableCollection<CountryItemViewModel> americas;
+        private ObservableCollection<CountryItemViewModel> asia;
+        private ObservableCollection<CountryItemViewModel> europe;
+        private ObservableCollection<CountryItemViewModel> oceania;
         private ICommand playingCommand;
        
         #endregion
@@ -47,34 +47,34 @@ namespace Countries.ViewModels
             set { SetValue(ref this.name, value); }
         }
 
-        public ObservableCollection<Country> Countries
-        {
-            get { return this.countries; }
-            set { SetValue(ref this.countries, value); }
-        }
+        //public ObservableCollection<CountryItemViewModel> Countries
+        //{
+        //    get { return this.countries; }
+        //    set { SetValue(ref this.countries, value); }
+        //}
 
-        public ObservableCollection<Country> Africa
+        public ObservableCollection<CountryItemViewModel> Africa
         {
             get { return this.africa; }
             set { SetValue(ref this.africa, value); }
         }
 
-        public ObservableCollection<Country> Americas
+        public ObservableCollection<CountryItemViewModel> Americas
         {
             get { return this.americas; }
             set { SetValue(ref this.americas, value); }
         }
-        public ObservableCollection<Country> Asia
+        public ObservableCollection<CountryItemViewModel> Asia
         {
             get { return this.asia; }
             set { SetValue(ref this.asia, value); }
         }
-        public ObservableCollection<Country> Europe
+        public ObservableCollection<CountryItemViewModel> Europe
         {
             get { return this.europe; }
             set { SetValue(ref this.europe, value); }
         }
-        public ObservableCollection<Country> Oceania
+        public ObservableCollection<CountryItemViewModel> Oceania
         {
             get { return this.oceania; }
             set { SetValue(ref this.oceania, value); }
@@ -88,7 +88,7 @@ namespace Countries.ViewModels
         {
             this.Name = "Antonio Tamez Salinas";
             this.apiService = new ApiService();
-            this.LoadCountries();
+            //this.LoadCountries();
             this.LoadCountries(Region.Africa);
             this.LoadCountries(Region.Americas);
             this.LoadCountries(Region.Asia);
@@ -101,26 +101,26 @@ namespace Countries.ViewModels
 
 
         #region Methods
-        private async void LoadCountries()
-        {
-            var response = await this.apiService.GetList<Country>(
-         "http://restcountries.eu",
-         "/rest",
-         "/v2/all");
+        //private async void LoadCountries()
+        //{
+        //    var response = await this.apiService.GetList<Country>(
+        // "http://restcountries.eu",
+        // "/rest",
+        // "/v2/all");
 
-            if (!response.IsSuccess)
-            {
-                //this.IsRefreshing = false;
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
-                await Application.Current.MainPage.Navigation.PopAsync();
-                return;
-            }
-            var list = (List<Country>)response.Result;
-            this.Countries = new ObservableCollection<Country>(list.Take(10));
-        }
+        //    if (!response.IsSuccess)
+        //    {
+        //        //this.IsRefreshing = false;
+        //        await Application.Current.MainPage.DisplayAlert(
+        //            "Error",
+        //            response.Message,
+        //            "Accept");
+        //        await Application.Current.MainPage.Navigation.PopAsync();
+        //        return;
+        //    }
+        //    var list = (List<Country>)response.Result;
+        //    this.Countries = new ObservableCollection<Country>(list.Take(10));
+        //}
    
         private async void LoadCountries(Models.Region region)
         {
@@ -141,24 +141,54 @@ namespace Countries.ViewModels
                 await Application.Current.MainPage.Navigation.PopAsync();
                 return;
             }
-            var list = (List<Country>)response.Result;
+            this.MyCountries= (List<Country>)response.Result;
+
+            var myListCountriesItemViewModel = this.MyCountries.Select(c => new CountryItemViewModel
+            {
+
+                Name = c.Name,
+                TopLevelDomain = c.TopLevelDomain,
+                Alpha2Code = c.Alpha2Code,
+                Alpha3Code = c.Alpha2Code,
+                CallingCodes = c.CallingCodes,
+                Capital = c.Capital,
+                AltSpellings = c.AltSpellings,
+                Region = c.Region,
+                Subregion = c.Subregion,
+                Population = c.Population,
+                Latlng = c.Latlng,
+                Demonym = c.Demonym,
+                Area = c.Area,
+                Gini = c.Gini,
+                Timezones = c.Timezones,
+                Borders = c.Borders,
+                NativeName = c.NativeName,
+                NumericCode = c.NumericCode,
+                Currencies = c.Currencies,
+                Languages = c.Languages,
+                Translations = c.Translations,
+                Flag = c.Flag,
+                RegionalBlocs = c.RegionalBlocs,
+                Cioc = c.Cioc,
+            });
+
 
             switch (region)
             {
                 case Region.Africa:
-                    this.Africa = new ObservableCollection<Country>(list);
+                    this.Africa = new ObservableCollection<CountryItemViewModel>(myListCountriesItemViewModel);
                     break;
                 case Region.Americas:
-                    this.Americas = new ObservableCollection<Country>(list);
+                    this.Americas = new ObservableCollection<CountryItemViewModel>(myListCountriesItemViewModel);
                     break;
                 case Region.Asia:
-                    this.Asia = new ObservableCollection<Country>(list);
+                    this.Asia = new ObservableCollection<CountryItemViewModel>(myListCountriesItemViewModel);
                     break;
                 case Region.Europe:
-                    this.Europe = new ObservableCollection<Country>(list);
+                    this.Europe = new ObservableCollection<CountryItemViewModel>(myListCountriesItemViewModel);
                     break;
                 case Region.Oceania:
-                    this.Oceania = new ObservableCollection<Country>(list);
+                    this.Oceania = new ObservableCollection<CountryItemViewModel>(myListCountriesItemViewModel);
                     break;
             }
 
@@ -200,6 +230,8 @@ namespace Countries.ViewModels
 
 
         #region Commands
+
+      
         public ICommand PlayingCommand
         {
             get

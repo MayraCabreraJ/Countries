@@ -8,11 +8,13 @@ namespace Countries
 
     public partial class App : Application
     {
+        public static NavigationPage Navigator { get; internal set; }
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new CountriesPage();
+            MainPage = new NavigationPage(new  CountriesPage());
         }
 
         protected override void OnStart()

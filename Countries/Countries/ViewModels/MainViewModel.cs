@@ -17,6 +17,13 @@ namespace Countries.ViewModels
         #endregion
 
         #region ViewModels
+
+        public DetailCountryViewModel DetailCountry
+        {
+            get;
+            set;
+        }
+
         public CountryViewModel Country
         {
             get;

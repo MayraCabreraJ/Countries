@@ -10,74 +10,23 @@
     <ContentView.Resources>
         <ResourceDictionary>
 
-            <ffimageloadingsvg:SvgImageSourceConverter 
-                x:Key="SvgImageSourceConverter"/>
+            <ffimageloadingsvg:SvgImageSourceConverter x:Key="SvgImageSourceConverter"/>
 
             <Style x:Key="MovieItemCoverStyle" TargetType="ffimageloading:CachedImage">
                 <Setter Property="Aspect" Value="AspectFit" />
                 <Setter Property="HeightRequest" Value="160" />
             </Style>
 
-            <!--<Style x:Key="WatchingItemStyle" TargetType="Grid">
-                <Setter Property="WidthRequest" Value="350" />
-            </Style>
-
-            <Style x:Key="CoverStyle" TargetType="Image">
-                <Setter Property="Aspect" Value="AspectFill" />
-            </Style>
-
-            <Style x:Key="TitleStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
-                <Setter Property="FontSize" Value="12" />
-                <Setter Property="VerticalOptions" Value="End" />
-                <Setter Property="Margin" Value="6, 12" />
-            </Style>
-
-            <Style x:Key="InformationStyle" TargetType="Image">
-                <Setter Property="HorizontalOptions" Value="End" />
-                <Setter Property="VerticalOptions" Value="End" />
-                <Setter Property="Margin" Value="0, 0, 12, 0" />
-            </Style>
-
-            <Style x:Key="PlayStyle" TargetType="Image">
-                <Setter Property="WidthRequest" Value="80" />
-                <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
-
-            <Style x:Key="ProgressStyle" TargetType="Grid">
-                <Setter Property="BackgroundColor" Value="Red" />
-                <Setter Property="HorizontalOptions" Value="Start" />
-                <Setter Property="VerticalOptions" Value="End" />
-                <Setter Property="HeightRequest" Value="2" />
-                <Setter Property="WidthRequest" Value="80" />
-            </Style>-->
-
         </ResourceDictionary>
     </ContentView.Resources>
     
   <ContentView.Content>
-        <ffimageloading:CachedImage 
-       
+ 
+ 
+            <ffimageloading:CachedImage 
                 Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}"
                   Style="{StaticResource MovieItemCoverStyle}">
-        </ffimageloading:CachedImage>
-        <!--<Grid Style="{StaticResource WatchingItemStyle}">
-
-            <ffimageloading:CachedImage 
-       
-                Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}"
-                  Style="{StaticResource CoverStyle}">
             </ffimageloading:CachedImage>
-
-
-    
-            
-            <Label 
-                Text="{Binding Name}"
-                Style="{StaticResource TitleStyle}"/>
-            <Grid 
-                Style="{StaticResource ProgressStyle}"/>
-        </Grid>-->
-  </ContentView.Content>
+ 
+    </ContentView.Content>
 </ContentView>
