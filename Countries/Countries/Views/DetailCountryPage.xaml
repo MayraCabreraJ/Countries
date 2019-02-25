@@ -12,26 +12,33 @@
             <ffimageloadingsvg:SvgImageSourceConverter x:Key="SvgImageSourceConverter"/>
 
             <Style x:Key="MovieItemCoverStyle" TargetType="ffimageloading:CachedImage">
-                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="Aspect" Value="AspectFill" />
                 <Setter Property="HeightRequest" Value="80" />
             </Style>
 
             <Style x:Key="TitleStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="Margin" Value="12, 0" />
             </Style>
+
+            <Style x:Key="NormalStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="Margin" Value="12, 0" />
+            </Style>
+
         </ResourceDictionary>
         
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <ScrollView BindingContext="{Binding DetailCountry}" Padding="5">
+        <ScrollView BindingContext="{Binding DetailCountry}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="2*"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="3*"/>
                 </Grid.RowDefinitions>
 
                 <ffimageloading:CachedImage 
@@ -41,11 +48,101 @@
                     x:Name="flag">
                 </ffimageloading:CachedImage>
 
+                <Frame Grid.Row="1">
+                   <Grid x:Name="mainData" IsVisible="True" >
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Name" Style="{StaticResource TitleStyle}"/>
+                            <Label Text="{Binding Country.Name}" Style="{StaticResource NormalStyle}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Capital" Style="{StaticResource TitleStyle}"></Label>
+                            <Label Text="{Binding Country.Capital}" Style="{StaticResource NormalStyle}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Region" Style="{StaticResource TitleStyle}"></Label>
+                            <Label Text="{Binding Country.Region}" Style="{StaticResource NormalStyle}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Subregion" Style="{StaticResource TitleStyle}"></Label>
+                            <Label Text="{Binding Country.Subregion}" Style="{StaticResource NormalStyle}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Top Level Domain" Style="{StaticResource TitleStyle}"></Label>
+                            <Label Text="{Binding Country.TopLevelDomain}" Style="{StaticResource NormalStyle}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                                <Label Text="Alpha2Code" Style="{StaticResource TitleStyle}"></Label>
+                                <Label Text="{Binding Country.Alpha2Code}" Style="{StaticResource NormalStyle}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Alpha3Code" Style="{StaticResource TitleStyle}"></Label>
+                            <Label Text="{Binding Country.Alpha3Code}" Style="{StaticResource NormalStyle}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Population" Style="{StaticResource TitleStyle}"></Label>
+                            <Label Text="{Binding Country.Population}" Style="{StaticResource NormalStyle}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label   Text="Demonym" Style="{StaticResource TitleStyle}"></Label>
+                            <Label  Text="{Binding Country.Demonym}" Style="{StaticResource NormalStyle}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label   Text="Area" Style="{StaticResource TitleStyle}"></Label>
+                            <Label  Text="{Binding Country.Area}" Style="{StaticResource NormalStyle}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label   Text="Gini" Style="{StaticResource TitleStyle}"></Label>
+                            <Label  Text="{Binding Country.Gini}" Style="{StaticResource NormalStyle}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label   Text="NativeName" Style="{StaticResource TitleStyle}"></Label>
+                            <Label  Text="{Binding Country.NativeName}" Style="{StaticResource NormalStyle}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label   Text="Cioc" Style="{StaticResource TitleStyle}"></Label>
+                            <Label  Text="{Binding Country.Cioc}" Style="{StaticResource NormalStyle}"></Label>
+                        </StackLayout>
+                    </StackLayout>
+ 
 
-                <StackLayout Grid.Row="1" >
-                    <Label Text="{Binding Country.Name}"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" />
+                  
+                </Grid> 
+                </Frame>
+                
+                <StackLayout Grid.Row="2" >
+                    <Label 
+                        Text="Borders"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <ListView
+                        HasUnevenRows="true"
+                        ItemsSource="{Binding Borders}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="3*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label 
+                                    Grid.Column="0"
+                                    Text="{Binding Code}"
+                                    TextColor="Black">
+                                        </Label>
+                                        <Label 
+                                    Grid.Column="1"
+                                    Text="{Binding Name}"
+                                    TextColor="Black">
+                                        </Label>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
                 </StackLayout>
                 
             </Grid>

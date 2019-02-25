@@ -6,11 +6,10 @@
     xmlns:controls ="clr-namespace:Countries.Controls.HorizontalList"
     xmlns:templates ="clr-namespace:Countries.Views.Template"
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
-    BackgroundColor="{StaticResource BackgroundColor}"
+    BackgroundColor="{StaticResource WhiteColor}"
     xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-
     Title="Countries">
 
     <ContentPage.Resources>
@@ -43,20 +42,17 @@
     <ContentPage.Content>
         <ScrollView Padding="5">
             <StackLayout BindingContext="{Binding Country}">
-                
- 
 
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
+               
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" 
-                           Text="{Binding Name}"></Label>
+                     
 
-                    <lottie:AnimationView Grid.Row="1"
+                    <lottie:AnimationView Grid.Row="0"
                         x:Name="LottieView" 
                         Animation="heart.json" 
                         Loop="False" 
@@ -67,24 +63,22 @@
 
                     </lottie:AnimationView>
 
-                    <StackLayout Grid.Row="2">
-
-
+                    <StackLayout Grid.Row="1">
                         <ListView
                             ItemsSource="{Binding Americas}"
                             SeparatorVisibility="None"
                             HasUnevenRows="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <ViewCell>
-                                        <Frame 
-                                            CornerRadius="20"
+                                    <ViewCell Appearing="ViewCell_Appearing">
+                                        <Frame
                                             HasShadow="True"
-                                            Margin="5">
+                                            Margin="8">
                                             <Grid>
                                                 <Grid.GestureRecognizers>
                                                     <TapGestureRecognizer
-                                                        Command="{Binding DetailCommand}">
+                                                        Command="{Binding DetailCommand}"
+                                                        Tapped="TapGestureRecognizer_Tapped">
                                                     </TapGestureRecognizer>
                                                 </Grid.GestureRecognizers>
                                                 <Grid.ColumnDefinitions>
@@ -92,13 +86,13 @@
                                                     <ColumnDefinition Width="2*"/>
                                                 </Grid.ColumnDefinitions>
 
-                                                <ffimageloading:CachedImage Grid.Column="0" 
+                                                <ffimageloading:CachedImage Grid.Column="0"
                                                     Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}"
                                                     Style="{StaticResource MovieItemCoverStyle}">
                                                 </ffimageloading:CachedImage>
 
                                                 <Grid Grid.Column="1">
-                                                    <StackLayout HorizontalOptions="CenterAndExpand">
+                                                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                                                         <Label Text="{Binding Name}"></Label>
                                                         <Label Text="{Binding Capital}"></Label>
                                                         <Label Text="{Binding Alpha3Code}"></Label>

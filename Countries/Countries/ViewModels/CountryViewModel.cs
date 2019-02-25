@@ -88,7 +88,7 @@ namespace Countries.ViewModels
         {
             this.Name = "Antonio Tamez Salinas";
             this.apiService = new ApiService();
-            //this.LoadCountries();
+            this.LoadCountries();
             this.LoadCountries(Region.Africa);
             this.LoadCountries(Region.Americas);
             this.LoadCountries(Region.Asia);
@@ -101,27 +101,26 @@ namespace Countries.ViewModels
 
 
         #region Methods
-        //private async void LoadCountries()
-        //{
-        //    var response = await this.apiService.GetList<Country>(
-        // "http://restcountries.eu",
-        // "/rest",
-        // "/v2/all");
+        private async void LoadCountries()
+        {
+         var response = await this.apiService.GetList<Country>(
+            "http://restcountries.eu",
+            "/rest",
+            "/v2/all");
 
-        //    if (!response.IsSuccess)
-        //    {
-        //        //this.IsRefreshing = false;
-        //        await Application.Current.MainPage.DisplayAlert(
-        //            "Error",
-        //            response.Message,
-        //            "Accept");
-        //        await Application.Current.MainPage.Navigation.PopAsync();
-        //        return;
-        //    }
-        //    var list = (List<Country>)response.Result;
-        //    this.Countries = new ObservableCollection<Country>(list.Take(10));
-        //}
-   
+            if (!response.IsSuccess)
+            {
+                //this.IsRefreshing = false;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    response.Message,
+                    "Accept");
+                await Application.Current.MainPage.Navigation.PopAsync();
+                return;
+            }
+            MainViewModel.GetInstance().CountriesList = (List<Country>)response.Result;
+        }
+
         private async void LoadCountries(Models.Region region)
         {
             var controller = $"/v2/region/{region}";
@@ -145,11 +144,11 @@ namespace Countries.ViewModels
 
             var myListCountriesItemViewModel = this.MyCountries.Select(c => new CountryItemViewModel
             {
-
+                
                 Name = c.Name,
                 TopLevelDomain = c.TopLevelDomain,
                 Alpha2Code = c.Alpha2Code,
-                Alpha3Code = c.Alpha2Code,
+                Alpha3Code = c.Alpha3Code,
                 CallingCodes = c.CallingCodes,
                 Capital = c.Capital,
                 AltSpellings = c.AltSpellings,
