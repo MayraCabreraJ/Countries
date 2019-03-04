@@ -12,6 +12,9 @@ namespace Countries.ViewModels
 
     public class CountryItemViewModel : Country
     {
+
+        public List<Country> MyCountries { get; set; }
+
         #region Command
 
         public ICommand DetailCommand
@@ -20,6 +23,19 @@ namespace Countries.ViewModels
             {
                 return new RelayCommand(Detail);
             }
+        }
+
+        public ICommand SearchCommand
+        {
+            get
+            {
+                return new RelayCommand(Search);
+            }
+        }
+
+        private void Search()
+        {
+            MyCountries = MainViewModel.GetInstance().CountriesList;
         }
 
         private async void Detail()

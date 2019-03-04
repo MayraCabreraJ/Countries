@@ -9,6 +9,32 @@
         <ResourceDictionary>
             <infra:InstanceLocator x:Key="Locator"/>
 
+            <Color x:Key="BodyTextColor">#FFFFFF</Color>
+
+
+            <!--  font families  -->
+             
+
+            <!--  fonts  -->
+             
+
+
+            <!--  styles  -->
+            <Style x:Key="TitleLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
+ 
+            </Style>
+
+            <Style x:Key="HandleLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
+        
+            </Style>
+
+            <Style x:Key="BodyLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BodyTextColor}" />
+            
+            </Style>
+
             <!-- COLORS -->
             <Color x:Key="BlackColor">#000000</Color>
             <Color x:Key="BackgroundColor">#181818</Color>
@@ -16,7 +42,7 @@
             <Color x:Key="MenuTextColor">#B9B8B9</Color>
             <Color x:Key="WhiteColor">#cecece</Color>
 
-          
+           
 
         </ResourceDictionary>
 

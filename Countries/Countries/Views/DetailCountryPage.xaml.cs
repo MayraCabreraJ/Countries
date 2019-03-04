@@ -15,24 +15,22 @@ namespace Countries.Views
         public DetailCountryPage()
         {
             InitializeComponent();
+
+            detailCountryPage.Opacity = 0;
+            detailCountryPage.FadeTo(1, 250, Easing.BounceIn);
             animateFlag();
         }
 
         private async void animateFlag()
         {
             mainData.Opacity = 0;
+            borders.Opacity = 0;
 
             await flag.ScaleTo(3, 100);
             await flag.ScaleTo(1, 1000, Easing.SpringOut);
 
-            //mainData.IsVisible = false;
-          
-
-          
             await mainData.FadeTo(1, 250, Easing.BounceOut);
-
-            //await mainData.ScaleTo(3, 1000, Easing.SpringOut);
-           
+            await borders.FadeTo(1, 250, Easing.BounceOut);
 
         }
     }

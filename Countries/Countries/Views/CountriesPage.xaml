@@ -19,7 +19,9 @@
 
             <Style x:Key="MovieItemCoverStyle" TargetType="ffimageloading:CachedImage">
                 <Setter Property="Aspect" Value="AspectFit" />
-                <Setter Property="HeightRequest" Value="80" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
+                
             </Style>
 
             <Style x:Key="TitleStyle" TargetType="Label">
@@ -40,9 +42,86 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <ScrollView Padding="5">
+
+        <Grid  BindingContext="{Binding Country}">
+            <Image 
+                Aspect="Fill"
+                HorizontalOptions="Fill"
+                Source="ColoredBackground" 
+                VerticalOptions="Fill"/>
+            <ListView 
+                x:Name="countriesList"
+                BackgroundColor="Transparent"
+		        RowHeight="200" 
+                ItemsSource="{Binding Countries}" 
+                SeparatorVisibility="None">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowSpacing="5" ColumnSpacing="0" Margin="10,5" >
+
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding DetailCommand}"
+                                        Tapped="TapGestureRecognizer_Tapped">
+                                    </TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="AUTO"/>
+                                </Grid.RowDefinitions>
+
+                                <!--<Image Source="{Binding Flag}" Aspect="AspectFill" Grid.RowSpan="2" />-->
+
+                                <ffimageloading:CachedImage 
+                                        Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}" Aspect="AspectFill" Grid.RowSpan="2" >
+                                </ffimageloading:CachedImage>
+
+                                <Image Source="ShadowOverlay" Grid.RowSpan="2"  Aspect="Fill" VerticalOptions="End" HorizontalOptions="Fill" />
+
+                                <Grid Margin="10" RowSpacing="10" ColumnSpacing="10" Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="AUTO"/>
+                                        <RowDefinition Height="25"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="AUTO"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding Name}"  Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource TitleLabel}" LineBreakMode="NoWrap"/>
+
+                                    
+                                    <ffimageloading:CachedImage 
+                                        Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}" Aspect="AspectFill" Grid.Row="1" Grid.Column="0" WidthRequest="25" HeightRequest="25" 
+                                                    LoadingPlaceholder="noimage"      >
+                                    </ffimageloading:CachedImage>
+
+                                    <Label Text="{Binding Handle}" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Style="{StaticResource HandleLabel}" />
+
+                                    <StackLayout Orientation="Horizontal"  VerticalOptions="Center" Grid.Column="2" Grid.Row="1" Spacing="5">
+                                        <Image Source="Eye"/>
+                                        <Label Text="{Binding Capital, StringFormat='{0:N0}'}" Style="{StaticResource HandleLabel}" />
+                                        <Label Text="views" Style="{StaticResource BodyLabel}"/>
+                                    </StackLayout>
+                                </Grid>
+                                
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </Grid>
+        
+        <!--<ScrollView Padding="5">
             <StackLayout BindingContext="{Binding Country}">
 
+                 
+                
                 <Grid>
                     <Grid.RowDefinitions>
                
@@ -50,9 +129,18 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                     
 
-                    <lottie:AnimationView Grid.Row="0"
+                    <SearchBar
+                        BackgroundColor="Silver"
+                        HeightRequest="46"
+                        Text="{Binding Filter, Mode=TwoWay}"
+                        Placeholder="Search"
+                        SearchCommand="{Binding SearchCommand}">
+                    </SearchBar>
+                    
+                    
+
+                    --><!--<lottie:AnimationView Grid.Row="0"
                         x:Name="LottieView" 
                         Animation="heart.json" 
                         Loop="False" 
@@ -61,11 +149,11 @@
                         IsVisible="False">
                      
 
-                    </lottie:AnimationView>
+                    </lottie:AnimationView>--><!--
 
                     <StackLayout Grid.Row="1">
                         <ListView
-                            ItemsSource="{Binding Americas}"
+                            ItemsSource="{Binding Countries}"
                             SeparatorVisibility="None"
                             HasUnevenRows="True">
                             <ListView.ItemTemplate>
@@ -87,6 +175,8 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <ffimageloading:CachedImage Grid.Column="0"
+                                                    
+                                                    LoadingPlaceholder="noimage"                       
                                                     Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}"
                                                     Style="{StaticResource MovieItemCoverStyle}">
                                                 </ffimageloading:CachedImage>
@@ -107,7 +197,7 @@
                         </ListView>
                         
  
-                        <!--Africa--><!--
+                        --><!--Africa--><!--
                         <Label 
                             Text="Africa" 
                             Style="{StaticResource TitleStyle}"/>
@@ -203,7 +293,7 @@
                                     <templates:FlagTemplate/>
                                 </DataTemplate>
                             </controls:HorizontalList.ItemTemplate>
-                        </controls:HorizontalList>-->
+                        </controls:HorizontalList>--><!--
 
 
 
@@ -217,7 +307,7 @@
 
 
             </StackLayout>
-        </ScrollView>
+        </ScrollView>-->
         
             
         </ContentPage.Content>

@@ -19,7 +19,7 @@ namespace Countries.Views
 
             InitializeComponent();
 
-            LottieView.OnClick += LottieView_OnClick;
+            //LottieView.OnClick += LottieView_OnClick;
 
         }
 
@@ -36,12 +36,12 @@ namespace Countries.Views
             var cell = sender as ViewCell;
             var view = cell.View;
 
-            view.TranslationX = -100;
+            //view.TranslationX = -100;
             view.Opacity = 0;
 
             await Task.WhenAny<bool>
                 (
-                    view.TranslateTo(0, 0, 250, Easing.SinIn),
+                    //view.TranslateTo(0, 0, 250, Easing.SinIn),
                     view.FadeTo(1,500,Easing.BounceIn)
                 );
         }
