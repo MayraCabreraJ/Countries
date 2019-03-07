@@ -32,144 +32,53 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
+
         <ScrollView BindingContext="{Binding DetailCountry}">
-            <Grid RowSpacing="0">
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="200"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <ffimageloading:CachedImage 
-                    Grid.Row="0" 
-                    Source="{Binding Country.Flag, Converter={StaticResource SvgImageSourceConverter}}"
-                    Style="{StaticResource MovieItemCoverStyle}"
-                    x:Name="flag">
-                </ffimageloading:CachedImage>
+                <Grid Grid.Row="0">
+                    <ffimageloading:CachedImage 
+                            Aspect="AspectFill"
+                            HorizontalOptions="FillAndExpand"                                                
+                            Source="{Binding Country.Flag, Converter={StaticResource SvgImageSourceConverter}}"
+                            x:Name="flag"
+                            VerticalOptions="StartAndExpand">
+                    </ffimageloading:CachedImage>
+                </Grid>
 
-                <Frame Grid.Row="1" x:Name="mainData">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="2*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <Label Grid.Row="0" Grid.Column="0"  Text="Name" VerticalOptions="CenterAndExpand"/>
-                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Country.Name}" VerticalOptions="CenterAndExpand"/>
-                        
-                        <Label Grid.Row="1" Grid.Column="0"  Text="Capital" VerticalOptions="CenterAndExpand"/>
-                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Country.Capital}" VerticalOptions="CenterAndExpand"/>
-
-                        <Label Grid.Row="2" Grid.Column="0"  Text="Region" VerticalOptions="CenterAndExpand"/>
-                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding Country.Region}" VerticalOptions="CenterAndExpand"/>
-
-                        <Label Grid.Row="3" Grid.Column="0"  Text="Subregion" VerticalOptions="CenterAndExpand"/>
-                        <Label Grid.Row="3" Grid.Column="1" Text="{Binding Country.Subregion}" VerticalOptions="CenterAndExpand"/>
-
-                        <Label Grid.Row="4" Grid.Column="0"  Text="Alpha Code" VerticalOptions="CenterAndExpand"/>
-                        <Label Grid.Row="4" Grid.Column="1" Text="{Binding Country.Alpha3Code}" VerticalOptions="CenterAndExpand"/>
-
-                        <Label Grid.Row="5" Grid.Column="0"  Text="Population" VerticalOptions="CenterAndExpand"/>
-                        <Label Grid.Row="5" Grid.Column="1" Text="{Binding Country.Population}" VerticalOptions="CenterAndExpand"/>
-                    </Grid>
-                </Frame>
-
-                <Frame Grid.Row="2" x:Name="borders">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="2*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <Label Grid.Row="0" Grid.Column="0"  Text="Name" VerticalOptions="CenterAndExpand"/>
-                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Country.Name}" VerticalOptions="CenterAndExpand"/>
-
-                        <Label Grid.Row="1" Grid.Column="0"  Text="Capital" VerticalOptions="CenterAndExpand"/>
-                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Country.Capital}" VerticalOptions="CenterAndExpand"/>
-
-                        <Label Grid.Row="2" Grid.Column="0"  Text="Region" VerticalOptions="CenterAndExpand"/>
-                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding Country.Region}" VerticalOptions="CenterAndExpand"/>
-
-                        <Label Grid.Row="3" Grid.Column="0"  Text="Subregion" VerticalOptions="CenterAndExpand"/>
-                        <Label Grid.Row="3" Grid.Column="1" Text="{Binding Country.Subregion}" VerticalOptions="CenterAndExpand"/>
-
-                        <Label Grid.Row="4" Grid.Column="0"  Text="Alpha Code" VerticalOptions="CenterAndExpand"/>
-                        <Label Grid.Row="4" Grid.Column="1" Text="{Binding Country.Alpha3Code}" VerticalOptions="CenterAndExpand"/>
-
-                        <Label Grid.Row="5" Grid.Column="0"  Text="Population" VerticalOptions="CenterAndExpand"/>
-                        <Label Grid.Row="5" Grid.Column="1" Text="{Binding Country.Population}" VerticalOptions="CenterAndExpand"/>
-                    </Grid>
-                </Frame>
-               
-                <!--<Grid Grid.Row="1" BackgroundColor="Yellow" x:Name="mainData">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-
-                  
-                        <Label Grid.Column="0"  Text="Name" VerticalOptions="CenterAndExpand"/>
-                        <Label Grid.Column="1" Text="{Binding Country.Name}" VerticalOptions="CenterAndExpand"/>
- 
-                </Grid>--> 
-                
-                <!--<BoxView Grid.Row="1" BackgroundColor="Yellow" x:Name="mainData"/>-->
-                
-                <!--<BoxView Grid.Row="2" x:Name="borders"/>-->
-            </Grid>
-            
-                <!--<StackLayout Grid.Row="2">
-                    <Label 
-                        Text="Borders" 
-                        HorizontalOptions="Center"/>
-
-                    <ListView
-                        HasUnevenRows="true"
-                        ItemsSource="{Binding Borders}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid>
+                <ScrollView Grid.Row="1" >
+                    <ListView ItemsSource="{Binding CountryData}" 
+                          HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame HasShadow="True">
+                                    <Grid RowSpacing="5">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="2*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Label 
-                                            Grid.Column="0"
-                                            Text="{Binding Code}"
-                                            TextColor="Black">
-                                        </Label>
-                                        <Label 
-                                            Grid.Column="1"
-                                            Text="{Binding Name}"
-                                            TextColor="Black">
-                                        </Label>
+                                        <Label Grid.Column="0" Text="{Binding Label}"  />
+                                        <Label Grid.Column="1" Text="{Binding Data}" FontAttributes="Bold"/>
                                     </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-
-                </StackLayout>-->
+                                  
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                </ScrollView>
+                
+            </Grid>
         </ScrollView>
-        
 
-         
         
-
+       
+        
+       
     </ContentPage.Content>
 </ContentPage>

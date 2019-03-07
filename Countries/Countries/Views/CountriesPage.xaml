@@ -76,10 +76,17 @@
                                 <!--<Image Source="{Binding Flag}" Aspect="AspectFill" Grid.RowSpan="2" />-->
 
                                 <ffimageloading:CachedImage 
-                                        Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}" Aspect="AspectFill" Grid.RowSpan="2" >
+                                    Aspect="AspectFill" 
+                                    Grid.RowSpan="2"
+                                    Source="{Binding Flag,Converter={StaticResource SvgImageSourceConverter}}">
                                 </ffimageloading:CachedImage>
 
-                                <Image Source="ShadowOverlay" Grid.RowSpan="2"  Aspect="Fill" VerticalOptions="End" HorizontalOptions="Fill" />
+                                <Image 
+                                    Aspect="Fill"                                     
+                                    Grid.RowSpan="2"  
+                                    HorizontalOptions="Fill" 
+                                    Source="ShadowOverlay" 
+                                    VerticalOptions="End" />
 
                                 <Grid Margin="10" RowSpacing="10" ColumnSpacing="10" Grid.Row="1">
                                     <Grid.RowDefinitions>
@@ -117,197 +124,7 @@
             </ListView>
         </Grid>
         
-        <!--<ScrollView Padding="5">
-            <StackLayout BindingContext="{Binding Country}">
 
-                 
-                
-                <Grid>
-                    <Grid.RowDefinitions>
-               
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-
-                    <SearchBar
-                        BackgroundColor="Silver"
-                        HeightRequest="46"
-                        Text="{Binding Filter, Mode=TwoWay}"
-                        Placeholder="Search"
-                        SearchCommand="{Binding SearchCommand}">
-                    </SearchBar>
-                    
-                    
-
-                    --><!--<lottie:AnimationView Grid.Row="0"
-                        x:Name="LottieView" 
-                        Animation="heart.json" 
-                        Loop="False" 
-                        AutoPlay="False"
-                        Speed="1.5"
-                        IsVisible="False">
-                     
-
-                    </lottie:AnimationView>--><!--
-
-                    <StackLayout Grid.Row="1">
-                        <ListView
-                            ItemsSource="{Binding Countries}"
-                            SeparatorVisibility="None"
-                            HasUnevenRows="True">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell Appearing="ViewCell_Appearing">
-                                        <Frame
-                                            HasShadow="True"
-                                            Margin="8">
-                                            <Grid>
-                                                <Grid.GestureRecognizers>
-                                                    <TapGestureRecognizer
-                                                        Command="{Binding DetailCommand}"
-                                                        Tapped="TapGestureRecognizer_Tapped">
-                                                    </TapGestureRecognizer>
-                                                </Grid.GestureRecognizers>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="2*"/>
-                                                </Grid.ColumnDefinitions>
-
-                                                <ffimageloading:CachedImage Grid.Column="0"
-                                                    
-                                                    LoadingPlaceholder="noimage"                       
-                                                    Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}"
-                                                    Style="{StaticResource MovieItemCoverStyle}">
-                                                </ffimageloading:CachedImage>
-
-                                                <Grid Grid.Column="1">
-                                                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                                                        <Label Text="{Binding Name}"></Label>
-                                                        <Label Text="{Binding Capital}"></Label>
-                                                        <Label Text="{Binding Alpha3Code}"></Label>
-                                                    </StackLayout>
-                                                </Grid>
-
-                                            </Grid>
-                                        </Frame>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                        
- 
-                        --><!--Africa--><!--
-                        <Label 
-                            Text="Africa" 
-                            Style="{StaticResource TitleStyle}"/>
-
-                        <controls:HorizontalList
-                            ListOrientation="Horizontal"
-                            ItemsSource="{Binding Africa}"
-                            SelectedCommand="{Binding DetailCommand}"
-                            HeightRequest="70">
-
-                            <controls:HorizontalList.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding DetailCommand}">
-                                </TapGestureRecognizer>
-                            </controls:HorizontalList.GestureRecognizers>
-                            
-                            <controls:HorizontalList.ItemTemplate>
-                                <DataTemplate>
-                                    <templates:FlagTemplate/>
-                                </DataTemplate>
-                            </controls:HorizontalList.ItemTemplate>
-                            
-                            
-                        </controls:HorizontalList>
-
-                        --><!--Americas--><!--
-                        <Label
-                            Text="America" 
-                            Style="{StaticResource TitleStyle}">
-
-                        </Label>
-                        
-                        <controls:HorizontalList
-                            ListOrientation="Horizontal"
-                            ItemsSource="{Binding Americas}"
-                            HeightRequest="70">
-                            <controls:HorizontalList.ItemTemplate>
-                                <DataTemplate>
-                                    <templates:FlagTemplate/>
-                                </DataTemplate>
-                            </controls:HorizontalList.ItemTemplate>
-                        </controls:HorizontalList>
-
-                        --><!--Asia--><!--
-                        <Label
-                            Text="Asia" 
-                            Style="{StaticResource TitleStyle}">
-
-                        </Label>
-                        
-                        <controls:HorizontalList
-                            ListOrientation="Horizontal"
-                            ItemsSource="{Binding Asia}"
-                            HeightRequest="70">
-                            <controls:HorizontalList.ItemTemplate>
-                                <DataTemplate>
-                                    <templates:FlagTemplate/>
-                                </DataTemplate>
-                            </controls:HorizontalList.ItemTemplate>
-                        </controls:HorizontalList>
-                        
-                        --><!--Europe--><!--
-                        <Label
-                            Text="Europe" 
-                            Style="{StaticResource TitleStyle}">
-
-                        </Label>
-                        
-                        <controls:HorizontalList
-                            ListOrientation="Horizontal"
-                            ItemsSource="{Binding Europe}"
-                            HeightRequest="70">
-                            <controls:HorizontalList.ItemTemplate>
-                                <DataTemplate>
-                                    <templates:FlagTemplate/>
-                                </DataTemplate>
-                            </controls:HorizontalList.ItemTemplate>
-                        </controls:HorizontalList>
-                        
-                        --><!--Oceania--><!--
-                        <Label
-                            Text="Oceania" 
-                            Style="{StaticResource TitleStyle}">
-
-                        </Label>
-                        
-                        <controls:HorizontalList
-                            ListOrientation="Horizontal"
-                            ItemsSource="{Binding Oceania}"
-                            HeightRequest="70">
-                            <controls:HorizontalList.ItemTemplate>
-                                <DataTemplate>
-                                    <templates:FlagTemplate/>
-                                </DataTemplate>
-                            </controls:HorizontalList.ItemTemplate>
-                        </controls:HorizontalList>--><!--
-
-
-
-                    </StackLayout>
-
-                </Grid>
-                
-                
-
-
-
-
-            </StackLayout>
-        </ScrollView>-->
         
             
         </ContentPage.Content>

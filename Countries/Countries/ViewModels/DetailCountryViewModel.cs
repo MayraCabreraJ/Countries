@@ -9,10 +9,16 @@ namespace Countries.ViewModels
 {
     public class DetailCountryViewModel : BaseViewModel
     {
+
+        
+
         #region Attributes
         private Country country;
         private bool isRefreshing;
         private ObservableCollection<Border> borders;
+        private ObservableCollection<CountryData> countryData;
+
+         
         #endregion
 
         #region Properties
@@ -29,7 +35,11 @@ namespace Countries.ViewModels
             get { return this.borders; }
             set { this.SetValue(ref this.borders, value); }
         }
-
+        public ObservableCollection<CountryData> CountryData
+        {
+            get { return this.countryData; }
+            set { this.SetValue(ref this.countryData, value); }
+        }
         #endregion
 
 
@@ -39,6 +49,25 @@ namespace Countries.ViewModels
             this.Country = country;
             this.LoadBorders();
             this.LoadData();
+            this.LoadCountryData();
+            
+        }
+
+        private void LoadCountryData()
+        {
+            this.CountryData = new ObservableCollection<CountryData>();
+            this.CountryData.Add(new CountryData { Label = "Alpha 2 Code", Data = this.Country.Alpha2Code });
+            this.CountryData.Add(new CountryData { Label = "Alpha 3 Code", Data = this.Country.Alpha3Code });
+            this.CountryData.Add(new CountryData { Label = "Area", Data = this.Country.Area.ToString() });
+            this.CountryData.Add(new CountryData { Label = "Capital", Data = this.Country.Capital });
+            this.CountryData.Add(new CountryData { Label = "Cioc", Data = this.Country.Cioc });
+            this.CountryData.Add(new CountryData { Label = "Demonym", Data = this.Country.Demonym });
+            this.CountryData.Add(new CountryData { Label = "Name", Data = this.Country.Name });
+            this.CountryData.Add(new CountryData { Label = "Native Name", Data = this.Country.NativeName });
+            this.CountryData.Add(new CountryData { Label = "Numeric Code", Data = this.Country.NumericCode });
+            this.CountryData.Add(new CountryData { Label = "Population", Data = this.Country.Population.ToString() });
+            this.CountryData.Add(new CountryData { Label = "Region", Data = this.Country.Region });
+            this.CountryData.Add(new CountryData { Label = "Subregion", Data = this.Country.Subregion }); 
         }
 
         private void LoadBorders()
