@@ -49,7 +49,6 @@ namespace Countries.ViewModels
             get { return this.countries; }
             set { SetValue(ref this.countries, value); }
         }
-
         public ObservableCollection<CountryItemViewModel> Africa
         {
             get { return this.africa; }

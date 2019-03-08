@@ -17,8 +17,10 @@ namespace Countries.ViewModels
         private bool isRefreshing;
         private ObservableCollection<Border> borders;
         private ObservableCollection<CountryData> countryData;
+        private ObservableCollection<Currency> currency;
+        private ObservableCollection<RegionalBloc> regionalBloc;
 
-         
+
         #endregion
 
         #region Properties
@@ -40,6 +42,18 @@ namespace Countries.ViewModels
             get { return this.countryData; }
             set { this.SetValue(ref this.countryData, value); }
         }
+
+        public ObservableCollection<Currency> Currency
+        {
+            get { return this.currency; }
+            set { this.SetValue(ref this.currency, value); }
+        }
+
+        public ObservableCollection<RegionalBloc> RegionalBloc
+        {
+            get { return this.regionalBloc; }
+            set { this.SetValue(ref this.regionalBloc, value); }
+        }
         #endregion
 
 
@@ -50,7 +64,38 @@ namespace Countries.ViewModels
             this.LoadBorders();
             this.LoadData();
             this.LoadCountryData();
-            
+            this.LoadCurrencies();
+            this.LoadRegionalBloc();
+
+
+        }
+
+        private void LoadRegionalBloc()
+        {
+            this.RegionalBloc = new ObservableCollection<RegionalBloc>();
+            foreach(var item in this.Country.RegionalBlocs)
+            {
+                this.RegionalBloc.Add(
+                    new RegionalBloc{
+                        Acronym = item.Acronym,
+                        Name = item.Name,
+                    });
+            }
+        }
+
+        private void LoadCurrencies()
+        {
+            this.Currency = new ObservableCollection<Currency>();
+
+            foreach (var item in this.Country.Currencies)
+            {
+                this.Currency.Add(new Currency
+                {
+                    Code = item.Code,
+                    Name = item.Name,
+                    Symbol = item.Symbol,
+                });
+            }
         }
 
         private void LoadCountryData()

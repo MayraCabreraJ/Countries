@@ -42,7 +42,7 @@ namespace Countries.ViewModels
         {
              MainViewModel.GetInstance().DetailCountry = new DetailCountryViewModel(this);
 
-            await Application.Current.MainPage.Navigation.PushAsync(new DetailCountryPage());
+            await Application.Current.MainPage.Navigation.PushAsync(new DetailCountyTabbedPage());
            // await App.Navigator.PushAsync(new DetailCountryPage());
         }
 

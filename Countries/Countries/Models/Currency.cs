@@ -5,12 +5,12 @@ namespace Countries.Models
     public class Currency
     {
         [JsonProperty(PropertyName = "code")]
-        public string code { get; set; }
+        public string Code { get; set; }
 
         [JsonProperty(PropertyName = "name")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [JsonProperty(PropertyName = "symbol")]
-        public string symbol { get; set; }
+        public string Symbol { get; set; }
     }
 }
