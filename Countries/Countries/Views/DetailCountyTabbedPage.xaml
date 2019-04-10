@@ -4,17 +4,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:tabs="clr-namespace:Countries.Views"
     x:Class="Countries.Views.DetailCountyTabbedPage"
-    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-    android:TabbedPage.ToolbarPlacement="Bottom"
     Title="Country">
- 
+     <!--xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    android:TabbedPage.ToolbarPlacement="Bottom"-->
+    
   <!--Pages can be added as references or inline-->
     <TabbedPage.Children>
 
-        <tabs:DetailCountryPage Icon="ic_details" Title="Details"/>
-        <tabs:BordersPage  Icon="ic_borders" Title="Borders" />
-        <tabs:CurrencyPage  Icon="ic_currency"  Title="Currency"/>
-        <tabs:RegionalBlocPage  Icon="ic_regionalblock"  Title="Regional Blocks"/>
+        <tabs:DetailCountryPage Icon="details" Title="Details"/>
+        <tabs:BordersPage  Icon="borders" Title="Borders" />
+        <tabs:CurrencyPage  Icon="currency"  Title="Currency"/>
+        <tabs:RegionalBlocPage  Icon="regionalblock"  Title="Regional Blocks"/>
 
     </TabbedPage.Children>
 </TabbedPage>
